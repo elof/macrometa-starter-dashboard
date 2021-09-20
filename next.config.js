@@ -1,6 +1,6 @@
-const { extend } = require('next-compose-plugins')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const { extend } = require("next-compose-plugins")
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 })
 
 const baseConfig = (phase, { defaultConfig }) => {
