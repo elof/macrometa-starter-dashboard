@@ -5,7 +5,8 @@ const ChartGrid = memo(({ children, ...rest }) => {
   return (
     <Grid
       gap={4}
-      templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+      templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }}
+      templateRows="repeat(2, 1fr)"
       {...rest}
     >
       {children}

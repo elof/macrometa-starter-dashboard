@@ -90,7 +90,6 @@ const Header = memo(({ description = "", title = "" }) => {
           }
           onClick={toggleColorMode}
           variant="outline"
-          _focus={{ outline: 0 }}
         />
       </Stack>
     </Flex>

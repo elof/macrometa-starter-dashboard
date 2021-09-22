@@ -7,14 +7,17 @@ import {
   useColorModeValue
 } from "@chakra-ui/react"
 
-const ChartGridItem = memo(({ children, note = "", title = "", ...rest }) => {
+const ChartGridItem = memo(({ children, color, note = "", title = "", ...rest }) => {
   const bgColor = useColorModeValue("white", "gray.800")
-  const noteColor = useColorModeValue("gray.600", "gray.300")
+  const noteColor = useColorModeValue("gray.600", "gray.100")
 
   return (
     <GridItem
       bgColor={bgColor}
       borderRadius="md"
+      color={color}
+      display="flex"
+      flexDirection="column"
       px={4}
       py={3}
       shadow="sm"
@@ -30,7 +33,7 @@ const ChartGridItem = memo(({ children, note = "", title = "", ...rest }) => {
         </Heading>
       )}
       <Center
-        // bg="gray.100"
+        flex={1}
         minHeight="120px"
         fontSize="sm"
         py={2}
@@ -39,7 +42,7 @@ const ChartGridItem = memo(({ children, note = "", title = "", ...rest }) => {
       </Center>
       {note && (
         <Text
-          color={noteColor}
+          color={color || noteColor}
           fontSize="xs"
           lineHeight={5}
           pt={2}

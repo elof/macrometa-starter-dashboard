@@ -1,11 +1,7 @@
-const IconButton = {
-  baseStyle: {
-    _focus: {
-      outline: 0
-    }
-  }
+const Button = {
+  baseStyle: {}
 }
 
 export {
-  IconButton
+  Button
 }
