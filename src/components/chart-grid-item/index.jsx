@@ -9,7 +9,7 @@ import {
 
 const ChartGridItem = memo(({ children, color, note = "", title = "", ...rest }) => {
   const bgColor = useColorModeValue("white", "gray.800")
-  const noteColor = useColorModeValue("gray.600", "gray.100")
+  const noteColor = useColorModeValue("gray.600", "gray.200")
 
   return (
     <GridItem
