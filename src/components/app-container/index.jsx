@@ -18,7 +18,8 @@ const AppContainer = memo(({ children }) => {
   const router = useRouter()
 
   /* Color Management */
-  const bgColor = useColorModeValue("gray.50", "gray.900")
+  const bgColor = useColorModeValue("white", "gray.800")
+  const contentBgColor = useColorModeValue("gray.50", "gray.900")
   const [systemColorMode, setSystemColorMode] = useState('light')
 
   /* Content */
@@ -65,13 +66,17 @@ const AppContainer = memo(({ children }) => {
         <link rel="icon" href={`/images/favicon/${systemColorMode}/favicon-32x32.png`} rel="icon" sizes="32x32" type="image/png" />
         <link rel="icon" href={`/images/favicon/${systemColorMode}/favicon-16x16.png`} rel="icon" sizes="16x16" type="image/png" />
       </Head>
-      <Flex direction="column" minHeight="100vh">
+      <Flex
+        bgColor={bgColor}
+        direction="column"
+        minHeight="100vh"
+      >
         <Header
           title={siteName}
           description={siteDesc}
         />
         <Box
-          bgColor={bgColor}
+          bgColor={contentBgColor}
           flex={1}
           px={4}
           py={5}
