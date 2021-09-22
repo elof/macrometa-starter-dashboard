@@ -1,13 +1,22 @@
 import React, { memo } from "react"
 import {
   Center,
+  Flex,
   GridItem,
   Heading,
   Text,
   useColorModeValue
 } from "@chakra-ui/react"
 
-const ChartGridItem = memo(({ children, color, note = "", title = "", ...rest }) => {
+const ChartGridItem = memo(props => {
+  const {
+    children,
+    color,
+    controls,
+    note = "",
+    title = "",
+    ...rest
+  } = props
   const bgColor = useColorModeValue("white", "gray.800")
   const noteColor = useColorModeValue("gray.600", "gray.200")
 
@@ -23,15 +32,18 @@ const ChartGridItem = memo(({ children, color, note = "", title = "", ...rest })
       shadow="sm"
       {...rest}
     >
-      {title && (
-        <Heading
-          fontSize="md"
-          lineHeight={6}
-          mb={2}
-        >
-          {title}
-        </Heading>
-      )}
+      <Flex align="center" justify="space-between" mb={2}>
+        {title && (
+          <Heading
+            flexGrow={1}
+            fontSize="md"
+            lineHeight={6}
+          >
+            {title}
+          </Heading>
+        )}
+        {controls}
+      </Flex>
       <Center
         flex={1}
         minHeight="120px"

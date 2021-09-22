@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react"
+import { Select, Text } from "@chakra-ui/react"
 import { ChartGrid, ChartGridItem } from "@/components"
 
 export default function Home() {
@@ -7,6 +7,13 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
+        controls={
+          <Select size="sm" w="auto">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </Select>
+        }
         colSpan={{ base: 1, lg: 2 }}
       >
         Chart Content
