@@ -10,6 +10,11 @@ const baseConfig = (phase, { defaultConfig }) => {
     trailingSlash: false,
     webpack: (config, { isServer }) => {
       // config.resolve.alias = {}
+      config.module.rules.push({
+        test: /\.ya?ml$/,
+        type: "json",
+        use: 'yaml-loader'
+      })
       return config
     }
   }

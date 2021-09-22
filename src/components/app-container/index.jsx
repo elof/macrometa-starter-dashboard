@@ -2,16 +2,19 @@ import React, { memo, useCallback, useEffect, useState } from "react"
 import Head  from "next/head"
 import { useRouter } from "next/router"
 
+/* Components */
 import {
   Box,
   Flex,
   useColorModeValue
 } from "@chakra-ui/react"
-
 import { Footer } from '../footer'
 import { Header } from '../header'
 
-/* Images */
+/* Content */
+import content from "@/content.yaml"
+
+/* Asssets */
 import SocialCard from '/public/images/social-card.png'
 
 const AppContainer = memo(({ children }) => {
@@ -23,8 +26,8 @@ const AppContainer = memo(({ children }) => {
   const [systemColorMode, setSystemColorMode] = useState('light')
 
   /* Content */
-  const siteName = `Demo Starter App`
-  const siteDesc = `Build powerful demos in a fraction of the time.`
+  const siteName = content.heading
+  const siteDesc = content.subheading
   const ogImage = `${process.env.NEXT_PUBLIC_BASE_URL}${SocialCard.src}`
   const ogUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`
 
@@ -43,7 +46,7 @@ const AppContainer = memo(({ children }) => {
         .matchMedia('(prefers-color-scheme: dark)')
         .removeEventListener('change', onSystemColorModeChange)
     }
-  }, [])
+  })
 
   return (
     <>
@@ -63,8 +66,8 @@ const AppContainer = memo(({ children }) => {
         {/* Favicons */}
         {/* <link href={`/images/favicon/${systemColorMode}/apple-touch-icon.png`} rel="apple-touch-icon" sizes="180x180" />
         <link href={`/images/favicon/${systemColorMode}/favicon.ico`} rel="icon" /> */}
-        <link rel="icon" href={`/images/favicon/${systemColorMode}/favicon-32x32.png`} rel="icon" sizes="32x32" type="image/png" />
-        <link rel="icon" href={`/images/favicon/${systemColorMode}/favicon-16x16.png`} rel="icon" sizes="16x16" type="image/png" />
+        <link href={`/images/favicon/${systemColorMode}/favicon-32x32.png`} rel="icon" sizes="32x32" type="image/png" />
+        <link href={`/images/favicon/${systemColorMode}/favicon-16x16.png`} rel="icon" sizes="16x16" type="image/png" />
       </Head>
       <Flex
         bgColor={bgColor}
@@ -89,4 +92,5 @@ const AppContainer = memo(({ children }) => {
   )
 })
 
+AppContainer.displayName = "AppContainer"
 export { AppContainer }

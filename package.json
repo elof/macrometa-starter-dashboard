@@ -7,6 +7,7 @@
     "url": "https://github.com/rootsystem-dev/client-macrometa-starter-app"
   },
   "scripts": {
+    "analyze": "ANALYZE=true npm run build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -22,12 +23,14 @@
     "@fontsource/open-sans": "^4.5.0",
     "@next/bundle-analyzer": "^11.1.2",
     "framer-motion": "^4.1.17",
+    "jsc8": "^0.16.3",
     "next": "11.1.2",
     "next-compose-plugins": "^2.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-full-screen": "^1.1.0",
-    "react-icons": "^4.2.0"
+    "react-icons": "^4.2.0",
+    "yaml-loader": "^0.6.0"
   },
   "devDependencies": {
     "eslint": "7.32.0",
