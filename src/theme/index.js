@@ -10,22 +10,26 @@ import {
 
 import { colors } from "./colors"
 import { global } from "./global"
+import { layerStyles } from "./layer-styles"
+import { textStyles } from "./text-styles"
 
 const theme = extendTheme(
   {
     colors: {
       ...colors,
-      primary: baseTheme.colors.indigo
+      primary: colors.indigo
     },
     config: {
       initialColorMode: "system",
-      useSystemColorMode: false,
+      useSystemColorMode: true,
     },
     fonts: {
       body: "'Open Sans', 'ui-sans-serif', sans-serif",
       heading: "'Lato', 'ui-serif', serif",
       mono: "'ui-monospace'"
-    }
+    },
+    layerStyles,
+    textStyles
   }, 
   withDefaultColorScheme({ colorScheme: "primary" })
 )

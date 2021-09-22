@@ -1,2 +1,6 @@
+export { AppContainer } from "./app-container"
+export { ChartGrid } from "./chart-grid"
+export { ChartGridItem } from "./chart-grid-item"
 export { Footer } from "./footer"
 export { Header } from "./header"
+export { Logotype } from "./logotype"
