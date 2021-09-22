@@ -6,6 +6,7 @@ import {
   Icon,
   IconButton,
   Stack,
+  useBreakpointValue,
   useColorMode,
   useColorModeValue
 } from "@chakra-ui/react"
@@ -29,6 +30,7 @@ import pkg from "/package.json"
 const Header = memo(({ description = "", title = "" }) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const fullscreen = useFullScreen()
+  const viewport = useBreakpointValue({ base: "mobile", md: "desktop" })
 
   const borderColor = useColorModeValue("gray.100", "gray.700")
   const headingColor = useColorModeValue("primary.500", "primary.200")
@@ -56,7 +58,7 @@ const Header = memo(({ description = "", title = "" }) => {
             {title}
           </Heading>
         )}
-        {description && (
+        {description && viewport !== "mobile" && (
           <Heading
             color={descriptionColor}
             fontSize="sm"
