@@ -20,8 +20,11 @@ import {
   AiOutlineFullscreenExit
 } from "react-icons/ai"
 
+import { GoRepo } from "react-icons/go"
+
 import { Logotype } from "@/components"
 import { useFullScreen } from "@/providers"
+import pkg from "/package.json"
 
 const Header = memo(({ description = "", title = "" }) => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -67,6 +70,18 @@ const Header = memo(({ description = "", title = "" }) => {
         )}
       </Flex>
       <Stack isInline={true} justify="flex-end" spacing={2}>
+
+        {/* GitHub Link */}
+        {pkg?.repository?.url && (
+          <IconButton
+            aria-label="GitHub"
+            as="a"
+            borderColor="gray.600"
+            href={pkg.repository.url}
+            icon={<Icon as={GoRepo} />}
+            variant="outline"
+          />
+        )}
 
         {/* FullScreen Toggle */}
         <IconButton 

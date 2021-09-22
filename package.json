@@ -2,6 +2,10 @@
   "name": "macrometa-starter-app",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rootsystem-dev/client-macrometa-starter-app"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
