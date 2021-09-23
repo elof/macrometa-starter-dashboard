@@ -26,10 +26,11 @@ const AppContainer = memo(({ children }) => {
   const [systemColorMode, setSystemColorMode] = useState('light')
 
   /* Content */
+  const baseUrl = typeof window !== 'undefined' ? `${location.protocol}//${location.host}` : ''
   const siteName = content.heading
   const siteDesc = content.subheading
-  const ogImage = `${process.env.NEXT_PUBLIC_BASE_URL}${SocialCard.src}`
-  const ogUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`
+  const ogImage = `${baseUrl}${SocialCard.src}`
+  const ogUrl = `${baseUrl}${router.asPath}`
 
   const onSystemColorModeChange = useCallback(({ matches }) => {
     setSystemColorMode(matches ? 'dark' : 'light')
@@ -92,5 +93,4 @@ const AppContainer = memo(({ children }) => {
   )
 })
 
-AppContainer.displayName = "AppContainer"
 export { AppContainer }
