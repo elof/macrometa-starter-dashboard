@@ -1,6 +1,7 @@
 import React, { memo } from "react"
 
 import {
+  Button,
   Flex,
   Heading,
   Icon,
@@ -27,10 +28,10 @@ import { Logotype } from "@/components"
 import { useFullScreen } from "@/providers"
 import pkg from "/package.json"
 
-const Header = memo(({ description = "", title = "" }) => {
+const Header = memo(({ description = "", title = "", ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const fullscreen = useFullScreen()
-  const viewport = useBreakpointValue({ base: "mobile", md: "desktop" })
+  const viewport = useBreakpointValue({ base: "mobile", lg: "desktop" })
 
   const borderColor = useColorModeValue("gray.100", "gray.700")
   const headingColor = useColorModeValue("primary.500", "primary.200")
@@ -44,15 +45,24 @@ const Header = memo(({ description = "", title = "" }) => {
       justify="space-between"
       px={4}
       py={3}
+      {...rest}
     >
-      <Flex flex={1}>
-        <Logotype mr={2} />
+      <Flex 
+        direction={{ base: "column", lg: "row" }}
+        flex={1}
+      >
+        <Logotype
+          h={{ base: 5, lg: 7 }}
+          mr={2}
+          w={{ base: "80px", lg: "108px" }}
+        />
         {title && (
           <Heading
             color={headingColor}
-            fontSize="sm"
+            fontSize={{ base: "lg", lg: "sm" }}
             lineHeight={6}
-            ml={2}
+            ml={{ base: 0, lg: 2 }}
+            // pt={{ base: 0, lg: 1 }}
             pt={1}
           >
             {title}
@@ -72,6 +82,13 @@ const Header = memo(({ description = "", title = "" }) => {
         )}
       </Flex>
       <Stack isInline={true} justify="flex-end" spacing={2}>
+        <Button
+          borderColor="gray.600"
+          fontSize="sm"
+          variant="outline"
+        >
+          Start
+        </Button>
 
         {/* GitHub Link */}
         {pkg?.repository?.url && (
@@ -86,15 +103,17 @@ const Header = memo(({ description = "", title = "" }) => {
         )}
 
         {/* FullScreen Toggle */}
-        <IconButton 
-          aria-label={`${fullscreen.active ? "Exit" : "Enter"} fullscreen`}
-          borderColor="gray.600"
-          icon={
-            <Icon as={fullscreen.active ? AiOutlineFullscreenExit : AiOutlineFullscreen} />
-          }
-          onClick={fullscreen.active ? fullscreen.exit : fullscreen.enter}
-          variant="outline"
-        />
+        {viewport !== "mobile" && (
+          <IconButton 
+            aria-label={`${fullscreen.active ? "Exit" : "Enter"} fullscreen`}
+            borderColor="gray.600"
+            icon={
+              <Icon as={fullscreen.active ? AiOutlineFullscreenExit : AiOutlineFullscreen} />
+            }
+            onClick={fullscreen.active ? fullscreen.exit : fullscreen.enter}
+            variant="outline"
+          />
+        )}
 
         {/* ColorMode Toggle */}
         <IconButton 

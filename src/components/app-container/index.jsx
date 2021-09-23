@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import {
   Box,
   Flex,
+  useBreakpointValue,
   useColorModeValue
 } from "@chakra-ui/react"
 import { Footer } from '../footer'
@@ -24,6 +25,7 @@ const AppContainer = memo(({ children }) => {
   const bgColor = useColorModeValue("white", "gray.800")
   const contentBgColor = useColorModeValue("gray.50", "gray.900")
   const [systemColorMode, setSystemColorMode] = useState('light')
+  const viewport = useBreakpointValue({ base: "mobile", lg: "desktop" })
 
   /* Content */
   const baseUrl = typeof window !== 'undefined' ? `${location.protocol}//${location.host}` : ''
@@ -74,10 +76,17 @@ const AppContainer = memo(({ children }) => {
         bgColor={bgColor}
         direction="column"
         minHeight="100vh"
+        pt={viewport === "mobile" ? "72px" : 0}
       >
         <Header
+          bgColor={bgColor}
+          boxShadow={viewport === "mobile" ? "sm" : "none"}
           title={siteName}
           description={siteDesc}
+          position={viewport === "mobile" ? "fixed" : "relative"}
+          top={0}
+          w="full"
+          zIndex={1}
         />
         <Box
           bgColor={contentBgColor}
