@@ -1,4 +1,5 @@
 import { Select, Text } from "@chakra-ui/react"
+import { DemoLineChart } from "@/charts"
 import { ChartGrid, ChartGridItem } from "@/components"
 
 export default function Home() {
@@ -15,8 +16,9 @@ export default function Home() {
           </Select>
         }
         colSpan={{ base: 1, lg: 2 }}
+        rowSpan={2}
       >
-        Chart Content
+        <DemoLineChart />
       </ChartGridItem>
 
       <ChartGridItem
@@ -24,7 +26,7 @@ export default function Home() {
         note="This is a footnote!"
         bgColor="indigo.500"
         color="white"
-        rowSpan={2}
+        rowSpan={1}
       >
         <Text
           fontSize="7xl"
@@ -37,7 +39,22 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
-        rowSpan={2}
+        bgColor="teal.500"
+        color="white"
+        rowSpan={1}
+      >
+        <Text
+          fontSize="7xl"
+          fontWeight="bold"
+        >
+          0.68
+        </Text>
+      </ChartGridItem>
+
+      <ChartGridItem
+        title="Chart Title"
+        note="This is a footnote!"
+        colSpan={2}
       >
         Chart Content
       </ChartGridItem>
@@ -45,10 +62,11 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
+        rowSpan={2}
       >
         Chart Content
       </ChartGridItem>
-      
+
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
@@ -62,6 +80,7 @@ export default function Home() {
       >
         Chart Content
       </ChartGridItem>
+
     </ChartGrid>
   )
 }
