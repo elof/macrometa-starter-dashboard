@@ -1,11 +1,11 @@
 import React, { memo } from "react"
-import { ResponsiveLine } from "@nivo/line"
-import { Select, useColorModeValue, useToken } from "@chakra-ui/react"
+import { ResponsiveStream } from "@nivo/stream"
+import { useColorModeValue, useToken } from "@chakra-ui/react"
 
 import { ChartGridItem } from "@/components"
 import data from "./sample-data.json"
 
-const DemoLineChart = memo(({ ...rest }) => {
+const DemoStreamChart = memo(({ ...rest }) => {
   const [blackAlpha] = useToken("colors", ["blackAlpha"])
   const [fontFamily] = useToken("fonts", ["body"])
   const [fontSize] = useToken("fontSizes", ["xs"])
@@ -18,18 +18,10 @@ const DemoLineChart = memo(({ ...rest }) => {
   const tooltipBgColor = useColorModeValue(white, blackAlpha['800'])
 
   return (
-    <ChartGridItem
-      controls={
-        <Select size="sm" w="auto">
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-        </Select>
-      }
-      {...rest}
-    >
-      <ResponsiveLine
+    <ChartGridItem {...rest}>
+      <ResponsiveStream
         data={data}
+        keys={Object.keys(data[0])}
         colors={{ scheme }}
         theme={{
           // background: "pink",
@@ -58,10 +50,7 @@ const DemoLineChart = memo(({ ...rest }) => {
             container: { backgroundColor: tooltipBgColor }
           }
         }}
-        margin={{ top: 8, right: 140, bottom: 60, left: 60 }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
+
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -78,16 +67,18 @@ const DemoLineChart = memo(({ ...rest }) => {
           tickSize: 5,
           tickPadding: 8,
           tickRotation: 0,
-          tickValues: 7,
+          tickValues: 5,
           legend: 'count',
           legendOffset: -54,
           legendPosition: 'middle'
         }}
-        enableCrosshair={false}
+        borderColor={{ theme: 'background' }}
         enableGridX={false}
-        pointSize={8}
-        pointLabelYOffset={-12}
-        useMesh={true}
+        enableGridY={true}
+        fillOpacity={0.85}
+        margin={{ top: 8, right: 140, bottom: 60, left: 60 }}
+        offsetType="none"
+        order="none"
         legends={[
           {
             anchor: 'top-right',
@@ -119,4 +110,4 @@ const DemoLineChart = memo(({ ...rest }) => {
   )
 })
 
-export { DemoLineChart }
+export { DemoStreamChart }

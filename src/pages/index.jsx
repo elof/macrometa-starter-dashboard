@@ -1,32 +1,29 @@
 import { useState } from "react"
-import { Select, Text, useColorModeValue } from "@chakra-ui/react"
-import { DemoLineChart } from "@/charts"
-import { ChartGrid, ChartGridItem } from "@/components"
+import { Select } from "@chakra-ui/react"
+
+import {
+  DemoLineChart,
+  DemoPieChart,
+  DemoStreamChart
+} from "@/charts"
+import { ChartGrid, ChartGridItem, Metric } from "@/components"
 
 export default function Home() {
   const [demoColor, setDemoColor] = useState("indigo")
-  const rampValue = useColorModeValue("500", "600")
   return (
     <ChartGrid columns={3} rows={4}>
-      <ChartGridItem
-        title="Chart Title"
+
+      <DemoLineChart
+        title="Demo Line Chart"
         note="This is a footnote!"
-        controls={
-          <Select size="sm" w="auto">
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
-          </Select>
-        }
         colSpan={{ base: 1, lg: 2 }}
         rowSpan={2}
-      >
-        <DemoLineChart />
-      </ChartGridItem>
+      />
 
-      <ChartGridItem
-        title="Chart Title"
+      <Metric
+        title="Dynamic Metric"
         note="This is a footnote!"
+        colorScheme={demoColor}
         controls={
           <Select onChange={e => setDemoColor(e.target.value)} size="sm" value="indigo" w="auto" _focus={{ shadow: "none" }}>
             <option value="blue">Blue</option>
@@ -41,64 +38,43 @@ export default function Home() {
             <option value="yellow">Yellow</option>
           </Select>
         }
-        bgColor={`${demoColor}.${rampValue}`}
-        color="white"
         rowSpan={1}
-      >
-        <Text
-          fontSize="7xl"
-          fontWeight="bold"
-        >
-          2.4k
-        </Text>
-      </ChartGridItem>
+        value="2.4k"
+      />
 
-      <ChartGridItem
-        title="Chart Title"
+      <Metric
+        title="Teal Metric"
         note="This is a footnote!"
-        bgColor={`teal.${rampValue}`}
-        color="white"
-        rowSpan={1}
-      >
-        <Text
-          fontSize="7xl"
-          fontWeight="bold"
-        >
-          0.68
-        </Text>
-      </ChartGridItem>
+        colorScheme="teal"
+        value="0.68"
+      />
 
-      <ChartGridItem
-        title="Chart Title"
+      <DemoStreamChart
+        title="Demo Stream Chart"
         note="This is a footnote!"
         colSpan={{ base: 1, lg: 2 }}
-      >
-        Chart Content
-      </ChartGridItem>
+        rowSpan={1}
+      />
       
-      <ChartGridItem
-        title="Chart Title"
+      <DemoPieChart
+        title="Demo Pie Chart"
         note="This is a footnote!"
         rowSpan={2}
-      >
-        Chart Content
-      </ChartGridItem>
+      />
 
-      <ChartGridItem
-        title="Chart Title"
+      <Metric
+        title="Gray Metric 1/2"
         note="This is a footnote!"
-        rowSpan={1}
-      >
-        Chart Content
-      </ChartGridItem>
+        colorScheme="gray"
+        value="$24.96"
+      />
 
-      <ChartGridItem
-        title="Chart Title"
+      <Metric
+        title="Gray Metric 2/2"
         note="This is a footnote!"
-        rowSpan={1}
-      >
-        Chart Content
-      </ChartGridItem>
+        colorScheme="gray"
+        value="-0.23"
+      />
 
     </ChartGrid>
   )

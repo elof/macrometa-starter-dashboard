@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rust",
+    "label": "rust",
+    "value": 230,
+    "color": "hsl(107, 70%, 50%)"
+  },
+  {
+    "id": "sass",
+    "label": "sass",
+    "value": 462,
+    "color": "hsl(69, 70%, 50%)"
+  },
+  {
+    "id": "php",
+    "label": "php",
+    "value": 442,
+    "color": "hsl(160, 70%, 50%)"
+  },
+  {
+    "id": "go",
+    "label": "go",
+    "value": 221,
+    "color": "hsl(257, 70%, 50%)"
+  },
+  {
+    "id": "erlang",
+    "label": "erlang",
+    "value": 597,
+    "color": "hsl(5, 70%, 50%)"
+  }
+]

@@ -1,11 +1,11 @@
 import React, { memo } from "react"
-import { ResponsiveLine } from "@nivo/line"
+import { ResponsivePie } from "@nivo/pie"
 import { Select, useColorModeValue, useToken } from "@chakra-ui/react"
 
 import { ChartGridItem } from "@/components"
 import data from "./sample-data.json"
 
-const DemoLineChart = memo(({ ...rest }) => {
+const DemoPieChart = memo(({ ...rest }) => {
   const [blackAlpha] = useToken("colors", ["blackAlpha"])
   const [fontFamily] = useToken("fonts", ["body"])
   const [fontSize] = useToken("fontSizes", ["xs"])
@@ -18,21 +18,11 @@ const DemoLineChart = memo(({ ...rest }) => {
   const tooltipBgColor = useColorModeValue(white, blackAlpha['800'])
 
   return (
-    <ChartGridItem
-      controls={
-        <Select size="sm" w="auto">
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-        </Select>
-      }
-      {...rest}
-    >
-      <ResponsiveLine
+    <ChartGridItem {...rest}>
+      <ResponsivePie
         data={data}
         colors={{ scheme }}
         theme={{
-          // background: "pink",
           textColor: textColor,
           fontFamily: fontFamily,
           fontSize: fontSize,
@@ -58,65 +48,47 @@ const DemoLineChart = memo(({ ...rest }) => {
             container: { backgroundColor: tooltipBgColor }
           }
         }}
-        margin={{ top: 8, right: 140, bottom: 60, left: 60 }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          orient: 'bottom',
-          tickSize: 5,
-          tickPadding: 8,
-          tickRotation: 0,
-          legend: 'transportation',
-          legendOffset: 48,
-          legendPosition: 'middle'
-        }}
-        axisLeft={{
-          orient: 'left',
-          tickSize: 5,
-          tickPadding: 8,
-          tickRotation: 0,
-          tickValues: 7,
-          legend: 'count',
-          legendOffset: -54,
-          legendPosition: 'middle'
-        }}
-        enableCrosshair={false}
-        enableGridX={false}
-        pointSize={8}
-        pointLabelYOffset={-12}
-        useMesh={true}
+        innerRadius={0.5}
+        padAngle={0.7}
+        cornerRadius={3}
+        activeOuterRadiusOffset={8}
+        borderWidth={1}
+        borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
+        arcLinkLabelsSkipAngle={10}
+        arcLinkLabelsTextColor={textColor}
+        arcLinkLabelsThickness={2}
+        arcLinkLabelsColor={{ from: 'color', modifiers: [ [ 'darker', 1.4 ]] }}
+        arcLabelsSkipAngle={10}
+        arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'darker', 4 ] ] }}
+        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         legends={[
           {
-            anchor: 'top-right',
-            direction: 'column',
+            anchor: 'bottom',
+            direction: 'row',
             justify: false,
-            translateX: 100,
-            translateY: 0,
+            translateX: 0,
+            translateY: 40,
             itemsSpacing: 0,
+            itemWidth: 60,
+            itemHeight: 16,
+            itemTextColor: textColor,
             itemDirection: 'left-to-right',
-            itemWidth: 80,
-            itemHeight: 24,
-            itemOpacity: 0.75,
+            itemOpacity: 1,
             symbolSize: 16,
             symbolShape: 'circle',
-            symbolBorderColor: 'rgba(0, 0, 0, .5)',
             effects: [
               {
                 on: 'hover',
                 style: {
-                  itemBackground: 'rgba(0, 0, 0, .03)',
-                  itemOpacity: 1
+                  itemTextColor: '#000'
                 }
               }
             ]
           }
-        ]}
+      ]}
       />
     </ChartGridItem>
   )
 })
 
-export { DemoLineChart }
+export { DemoPieChart }

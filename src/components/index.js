@@ -1,3 +1,4 @@
+export * from "./chart-types"
 export { AppContainer } from "./app-container"
 export { ChartGrid } from "./chart-grid"
 export { ChartGridItem } from "./chart-grid-item"
