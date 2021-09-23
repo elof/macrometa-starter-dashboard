@@ -13,6 +13,7 @@ const Metric = memo(({ colorScheme = "primary", value, ...rest }) => {
       <Text
         fontSize="7xl"
         fontWeight="bold"
+        letterSpacing="tight"
       >
         {value}
       </Text>
