@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Install dependencies and run the development server:
 
 ```bash
-cp .env-copy .env.local
+cp .env-template .env.local
 npm i
 npm run dev
 ```
