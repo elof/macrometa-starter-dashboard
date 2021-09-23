@@ -46,9 +46,10 @@ const ChartGridItem = memo(props => {
       </Flex>
       <Center
         flex={1}
-        // minHeight="220px"
         fontSize="sm"
-        // py={2}
+        minHeight="144px"
+        mx="auto"
+        width="99%"
       >
         {children}
       </Center>

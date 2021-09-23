@@ -4,7 +4,7 @@ import { ChartGrid, ChartGridItem } from "@/components"
 
 export default function Home() {
   return (
-    <ChartGrid>
+    <ChartGrid columns={3} rows={4}>
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
@@ -54,7 +54,7 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
-        colSpan={2}
+        colSpan={{ base: 1, lg: 2 }}
       >
         Chart Content
       </ChartGridItem>
@@ -70,6 +70,7 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
+        rowSpan={1}
       >
         Chart Content
       </ChartGridItem>
@@ -77,6 +78,7 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
+        rowSpan={1}
       >
         Chart Content
       </ChartGridItem>

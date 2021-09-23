@@ -18,6 +18,10 @@ export const styles = {
       borderColor: mode("gray.100", "black.700")(props),
       mx: "auto",
       my: 6
+    },
+
+    ".fullscreen-enabled": {
+      overflowY: "scroll"
     }
   })
 }

@@ -1,12 +1,12 @@
 import React, { memo } from "react"
 import { Grid } from "@chakra-ui/react"
 
-const ChartGrid = memo(({ children, ...rest }) => {
+const ChartGrid = memo(({ children, columns = 3, rows = 4, ...rest }) => {
   return (
     <Grid
       gap={4}
-      templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }}
-      templateRows="repeat(4, 1fr)"
+      templateColumns={{ base: "1fr", lg: `repeat(${columns}, 1fr)` }}
+      templateRows={`repeat(${rows}, 1fr)`}
       {...rest}
     >
       {children}

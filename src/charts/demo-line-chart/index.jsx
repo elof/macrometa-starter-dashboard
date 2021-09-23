@@ -1,7 +1,6 @@
 import React, { memo } from "react"
 import { ResponsiveLine } from "@nivo/line"
 import { useColorModeValue, useToken } from "@chakra-ui/react"
-
 import data from "./sample-data.json"
 
 const DemoLineChart = memo(() => {
@@ -47,7 +46,6 @@ const DemoLineChart = memo(() => {
           container: { backgroundColor: tooltipBgColor }
         }
       }}
-
       margin={{ top: 8, right: 140, bottom: 60, left: 60 }}
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
