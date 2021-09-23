@@ -37,7 +37,7 @@ const ChartGridItem = memo(props => {
           <Heading
             flexGrow={1}
             fontSize="md"
-            lineHeight={6}
+            lineHeight={8}
           >
             {title}
           </Heading>

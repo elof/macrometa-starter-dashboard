@@ -1,8 +1,11 @@
-import { Select, Text } from "@chakra-ui/react"
+import { useState } from "react"
+import { Select, Text, useColorModeValue } from "@chakra-ui/react"
 import { DemoLineChart } from "@/charts"
 import { ChartGrid, ChartGridItem } from "@/components"
 
 export default function Home() {
+  const [demoColor, setDemoColor] = useState("indigo")
+  const rampValue = useColorModeValue("500", "600")
   return (
     <ChartGrid columns={3} rows={4}>
       <ChartGridItem
@@ -24,7 +27,21 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
-        bgColor="indigo.500"
+        controls={
+          <Select onChange={e => setDemoColor(e.target.value)} size="sm" value="indigo" w="auto" _focus={{ shadow: "none" }}>
+            <option value="blue">Blue</option>
+            <option value="cyan">Cyan</option>
+            <option value="gray">Gray</option>
+            <option value="indigo">Indigo</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="red">Red</option>
+            <option value="teal">Teal</option>
+            <option value="yellow">Yellow</option>
+          </Select>
+        }
+        bgColor={`${demoColor}.${rampValue}`}
         color="white"
         rowSpan={1}
       >
@@ -39,7 +56,7 @@ export default function Home() {
       <ChartGridItem
         title="Chart Title"
         note="This is a footnote!"
-        bgColor="teal.500"
+        bgColor={`teal.${rampValue}`}
         color="white"
         rowSpan={1}
       >
