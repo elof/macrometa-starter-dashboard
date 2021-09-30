@@ -19,27 +19,87 @@ if (typeof HC === "object") {
   HCExporting(HC)
 }
 
-const Highcharts = memo(({ options, ...rest }) => {
+const Highcharts = memo(({ options = {}, ...rest }) => {
   const { colorMode } = useColorMode()
   const theme = useTheme()
 
-  const defaultTheme = useMemo(() => {
-    const colorRampValue = colorMode === "dark" ? 300 : 500
-    const borderColor = colorMode === "dark" ? theme.colors.gray["200"] : theme.colors.gray["600"]
-    const textColor = colorMode === "dark" ? theme.colors.gray["600"] : theme.colors.gray["200"]
+  const themedOptions = useMemo(() => {
+    /**
+     * Destructures the `options` configuration object and then
+     * reassemble with theme attributes applied as defaults.
+     */
+    const colorRampValue = colorMode === "dark" ? 600 : 400
+    const themeBorderColor = colorMode === "dark" ? theme.colors.gray["600"] : theme.colors.gray["200"]
+    const themeTextColor = colorMode === "dark" ? theme.colors.gray["500"] : theme.colors.gray["500"]
+    const themeTextColorHidden = colorMode === "dark" ? theme.colors.gray["700"] : theme.colors.gray["200"]
+    const themeTextColorHover = colorMode === "dark" ? theme.colors.gray["200"] : theme.colors.gray["800"]
 
-    return {
-      chart: {
-        animation: "none",
-        backgroundColor: "transparent",
-        borderColor: borderColor,
-        color: textColor,
-        style: {
-          fontFamily: theme.fonts.body
+    const {
+      chart = {},
+      colors = [],
+      credits = {},
+      exporting = {},
+      legend = {},
+      plotOptions = {},
+      title,
+      xAxis = {},
+      yAxis = {},
+    } = options
+
+    const {
+      animation = "none",
+      backgroundColor = "transparent",
+      borderColor = themeBorderColor,
+      color = themeTextColor,
+      style = {},
+      type = "line"
+    } = chart
+
+    const {
+      align = "right",
+      itemHiddenStyle = {},
+      itemHoverStyle = {},
+      itemMarginTop = 4,
+      itemMarginBottom = 4,
+      itemStyle = {},
+      layout = "vertical",
+      symbolHeight = 16,
+      symbolPadding = 8,
+      verticalAlign = "top"
+    } = legend
+
+    let styledPlotOptions = { ...plotOptions }
+    if (type) {
+      styledPlotOptions[type] = {
+        marker: {
+          radius: 4,
+          symbol: "circle"
         },
-        type: "area"
+        ...styledPlotOptions[type]
+      }
+    }
+
+    const xAxisLabels = xAxis.labels || {}
+    const xAxisTitle = xAxis.title || {}
+    
+    const yAxisLabels = yAxis.labels || {}
+    const yAxisTitle = yAxis.title || {}
+
+    const output = {
+      ...options,
+      chart: {
+        animation,
+        backgroundColor,
+        borderColor,
+        color,
+        style: {
+          fontFamily: theme.fonts.body,
+          ...style
+        },
+        type
       },
       colors: [
+        ...colors,
         theme.colors.teal[colorRampValue],
         theme.colors.blue[colorRampValue],
         theme.colors.red[colorRampValue],
@@ -47,93 +107,91 @@ const Highcharts = memo(({ options, ...rest }) => {
         theme.colors.yellow[colorRampValue],
         theme.colors.pink[colorRampValue],
         theme.colors.green[colorRampValue],
-        theme.colors.orange[colorRampValue]
+        theme.colors.orange[colorRampValue],
+        theme.colors.purple[colorRampValue]
       ],
       credits: {
-        text: ""
+        text: "",
+        ...credits
       },
       exporting: {
-        enabled: false
+        enabled: false,
+        ...exporting
       },
       legend: {
-        align: "right",
+        align,
         itemHiddenStyle: {
-          color: theme.colors.gray["500"]
+          color: themeTextColorHidden,
+          ...itemHiddenStyle
         },
         itemHoverStyle: {
-          color: theme.colors.primary["500"]
+          color: themeTextColorHover,
+          ...itemHoverStyle
         },
-        itemMarginTop: 4,
-        itemMarginBottom: 4,
+        itemMarginTop,
+        itemMarginBottom,
         itemStyle: {
-          color: textColor,
+          color: themeTextColor,
           fontSize: "13px",
-          transform: "translateY(-2px)"
+          transform: "translateY(-2px)",
+          ...itemStyle,
         },
-        layout: "vertical",
-        symbolHeight: 16,
-        symbolPadding: 8,
-        verticalAlign: "top"
+        layout,
+        symbolHeight,
+        symbolPadding,
+        verticalAlign,
       },
-      plotOptions: {
-        area: {
-          marker: {
-            radius: 4,
-            symbol: "circle"
-          },
-          stacking: "normal"
-        }
-      },
-      title: undefined,
+      plotOptions: styledPlotOptions,
+      title,
       xAxis: {
-        gridLineColor: borderColor,
+        gridLineColor: themeBorderColor,
         labels: {
           style: {
-            color: textColor
-          }
+            color: themeTextColor
+          },
+          ...xAxisLabels
         },
-        lineColor: borderColor,
-        minorGridLineColor: borderColor,
-        minorTickColor: textColor,
-        tickColor: borderColor,
+        lineColor: themeBorderColor,
+        minorGridLineColor: themeBorderColor,
+        minorTickColor: themeTextColor,
+        tickColor: themeBorderColor,
         title: {
           style: {
-            color: textColor
+            color: themeTextColor
           },
-          text: "X Axis"
-        }
+          ...xAxisTitle
+        },
+        ...xAxis
       },
       yAxis: {
-        gridLineColor: borderColor,
+        gridLineColor: themeBorderColor,
         labels: {
           style: {
-            color: textColor
-          }
+            color: themeTextColor
+          },
+          ...yAxisLabels
         },
-        lineColor: borderColor,
-        minorGridLineColor: borderColor,
-        minorTickColor: borderColor,
-        tickColor: borderColor,
+        lineColor: themeBorderColor,
+        minorGridLineColor: themeBorderColor,
+        minorTickColor: themeBorderColor,
+        tickColor: themeBorderColor,
         title: {
           style: {
-            color: textColor
+            color: themeTextColor
           },
-          text: "Y Axis"
-        }
+          ...yAxisTitle
+        },
+        ...yAxis
       }
     }
-  }, [colorMode, theme])
+    return output
+  }, [colorMode, options, theme])
 
   return (
     <Box w="full">
       <HCReact
-        colorMode={colorMode}
         highcharts={HC}
-        options={{
-          ...defaultTheme,
-          ...options
-        }}
-        callback={(c) => c.render()}
+        options={themedOptions}
         {...rest}
       />
     </Box>
