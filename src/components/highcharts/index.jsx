@@ -51,8 +51,10 @@ const Highcharts = memo(({ options = {}, ...rest }) => {
       backgroundColor = "transparent",
       borderColor = themeBorderColor,
       color = themeTextColor,
+      height,
       style = {},
-      type = "line"
+      type = "line",
+      width
     } = chart
 
     const {
@@ -92,23 +94,36 @@ const Highcharts = memo(({ options = {}, ...rest }) => {
         backgroundColor,
         borderColor,
         color,
+        height,
         style: {
           fontFamily: theme.fonts.body,
           ...style
         },
-        type
+        type,
+        width,
+        ...chart
       },
       colors: [
         ...colors,
-        theme.colors.teal[colorRampValue],
         theme.colors.blue[colorRampValue],
         theme.colors.red[colorRampValue],
-        theme.colors.indigo[colorRampValue],
+        theme.colors.purple[colorRampValue],
         theme.colors.yellow[colorRampValue],
         theme.colors.pink[colorRampValue],
         theme.colors.green[colorRampValue],
         theme.colors.orange[colorRampValue],
-        theme.colors.purple[colorRampValue]
+        theme.colors.indigo[colorRampValue],
+        theme.colors.teal[colorRampValue]
+
+        // theme.colors.teal[colorRampValue],
+        // theme.colors.blue[colorRampValue],
+        // theme.colors.red[colorRampValue],
+        // theme.colors.indigo[colorRampValue],
+        // theme.colors.yellow[colorRampValue],
+        // theme.colors.pink[colorRampValue],
+        // theme.colors.green[colorRampValue],
+        // theme.colors.orange[colorRampValue],
+        // theme.colors.purple[colorRampValue]
       ],
       credits: {
         text: "",
@@ -188,8 +203,9 @@ const Highcharts = memo(({ options = {}, ...rest }) => {
   }, [colorMode, options, theme])
 
   return (
-    <Box w="full">
+    <Box h="full" w="full">
       <HCReact
+        containerProps={{ style: { height: "100%" } }}
         highcharts={HC}
         options={themedOptions}
         {...rest}

@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { Select } from "@chakra-ui/react"
+import { Link, Select } from "@chakra-ui/react"
 
 import {
   DemoLineChart,
   DemoPieChart,
   DemoStreamChart
 } from "@/charts"
-import { ChartGrid, ChartGridItem, Metric } from "@/components"
+import { ChartGrid, Metric } from "@/components"
 
 export default function Home() {
   const [demoColor, setDemoColor] = useState("indigo")
@@ -14,18 +14,27 @@ export default function Home() {
     <ChartGrid columns={3} rows={4}>
 
       <DemoLineChart
-        title="Demo Line Chart"
-        note="This is a footnote!"
+        title="Stacked Series"
+        note={
+          <Link color="primary.400" href="#inline-links">Notes support links, too!</Link>
+        }
         colSpan={{ base: 1, lg: 2 }}
         rowSpan={2}
       />
 
       <Metric
         title="Dynamic Metric"
-        note="This is a footnote!"
+        note="Select a color"
         colorScheme={demoColor}
         controls={
-          <Select onChange={e => setDemoColor(e.target.value)} size="sm" value="indigo" w="auto" _focus={{ shadow: "none" }}>
+          <Select
+            colorScheme={demoColor}
+            onChange={e => setDemoColor(e.target.value)}
+            size="sm"
+            value={demoColor}
+            w="auto"
+            _focus={{ shadow: "none" }}
+          >
             <option value="blue">Blue</option>
             <option value="cyan">Cyan</option>
             <option value="gray">Gray</option>
@@ -43,36 +52,36 @@ export default function Home() {
       />
 
       <Metric
-        title="Teal Metric"
-        note="This is a footnote!"
-        colorScheme="teal"
+        title="Green Metric"
+        note="Helpful notes go here"
+        colorScheme="green"
         value="0.68"
       />
 
       <DemoStreamChart
-        title="Demo Stream Chart"
-        note="This is a footnote!"
+        title="HTTP Response Codes"
+        // note="This is a footnote!"
         colSpan={{ base: 1, lg: 2 }}
         rowSpan={1}
       />
       
       <DemoPieChart
-        title="Demo Pie Chart"
-        note="This is a footnote!"
+        title="Browser Usage"
+        note="Resolution: 4hr"
         rowSpan={2}
       />
 
       <Metric
-        title="Gray Metric 1/2"
+        title="Median Order Size"
         note="This is a footnote!"
-        colorScheme="gray"
+        colorScheme="pink"
         value="$24.96"
       />
 
       <Metric
-        title="Gray Metric 2/2"
-        note="This is a footnote!"
-        colorScheme="gray"
+        title="Threshold"
+        note="🎶 And it was all yellow, ooh!"
+        colorScheme="yellow"
         value="-0.23"
       />
 

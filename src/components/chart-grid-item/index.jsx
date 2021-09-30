@@ -1,5 +1,6 @@
 import React, { memo } from "react"
 import {
+  Box,
   Center,
   Flex,
   GridItem,
@@ -32,18 +33,25 @@ const ChartGridItem = memo(props => {
       shadow="sm"
       {...rest}
     >
-      <Flex align="center" justify="space-between" mb={2}>
-        {title && (
-          <Heading
-            flexGrow={1}
-            fontSize="md"
-            lineHeight={8}
-          >
-            {title}
-          </Heading>
-        )}
-        {controls}
-      </Flex>
+      {(title || controls) && (
+        <Flex
+          align="center"
+          justify="space-between"
+          mb={2}
+          minHeight={8}
+        >
+          {title && (
+            <Heading
+              flexGrow={1}
+              fontSize="md"
+              lineHeight={8}
+            >
+              {title}
+            </Heading>
+          )}
+          {controls}
+        </Flex>
+      )}
       <Center
         flex={1}
         fontSize="sm"
@@ -54,14 +62,16 @@ const ChartGridItem = memo(props => {
         {children}
       </Center>
       {note && (
-        <Text
-          color={color || noteColor}
-          fontSize="xs"
-          lineHeight={5}
-          pt={2}
-        >
-          {note}
-        </Text>
+        <Box minHeight={7}>
+          <Text
+            color={color || noteColor}
+            fontSize="xs"
+            lineHeight={5}
+            pt={2}
+          >
+            {note}
+          </Text>
+        </Box>
       )}
     </GridItem>
   )

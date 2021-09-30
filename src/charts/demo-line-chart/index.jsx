@@ -14,15 +14,15 @@ const DemoLineChart = memo(({ ...rest }) => {
       }
     },
     series: [
-      { data: repeatN(genRandom(9999), 24), name: "Teal" },
       { data: repeatN(genRandom(9999), 24), name: "Blue" },
       { data: repeatN(genRandom(9999), 24), name: "Red" },
-      { data: repeatN(genRandom(9999), 24), name: "Indigo" },
+      { data: repeatN(genRandom(9999), 24), name: "Purple" },
       { data: repeatN(genRandom(9999), 24), name: "Yellow" },
       { data: repeatN(genRandom(9999), 24), name: "Pink" },
       { data: repeatN(genRandom(9999), 24), name: "Green" },
       { data: repeatN(genRandom(9999), 24), name: "Orange" },
-      { data: repeatN(genRandom(9999), 24), name: "Purple" }
+      { data: repeatN(genRandom(9999), 24), name: "Indigo" },
+      { data: repeatN(genRandom(9999), 24), name: "Teal" }
     ],
     xAxis: {
       title: {
