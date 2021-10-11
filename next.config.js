@@ -5,6 +5,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const baseConfig = (phase, { defaultConfig }) => {
   return {
+    assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH,
+    basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     poweredByHeader: false,
     reactStrictMode: true,
     trailingSlash: false,
