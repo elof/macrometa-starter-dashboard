@@ -57,7 +57,8 @@ const AppContainer = memo(({ children }) => {
         <title>{siteName}</title>
         <meta name="description" content={siteDesc} key="site-desc" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+        <base href={`${process.env.NEXT_PUBLIC_BASE_PATH}/`} />
+
         {/* Open Graph */}
         <meta property="og:title" content={siteName} key="og-title" />
         <meta property="og:description" content={siteDesc} key="og-desc" />
