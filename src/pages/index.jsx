@@ -1,15 +1,25 @@
-import { useState } from "react"
-import { Link, Select } from "@chakra-ui/react"
+import { Link } from "@chakra-ui/react"
 
 import {
   DemoLineChart,
+  DemoMetric,
   DemoPieChart,
   DemoStreamChart
 } from "@/charts"
-import { ChartGrid, Metric } from "@/components"
+
+import {
+  ChartGrid,
+  Metric
+} from "@/components"
+
+import {
+  createStreamReader,
+  executeRestql,
+  startStreamApps,
+  stopStreamApps
+} from "@/services"
 
 export default function Home() {
-  const [demoColor, setDemoColor] = useState("indigo")
   return (
     <ChartGrid columns={3} rows={4}>
 
@@ -22,33 +32,10 @@ export default function Home() {
         rowSpan={2}
       />
 
-      <Metric
+      <DemoMetric
         title="Dynamic Metric"
         note="Select a color"
-        colorScheme={demoColor}
-        controls={
-          <Select
-            colorScheme={demoColor}
-            onChange={e => setDemoColor(e.target.value)}
-            size="sm"
-            value={demoColor}
-            w="auto"
-            _focus={{ shadow: "none" }}
-          >
-            <option value="blue">Blue</option>
-            <option value="cyan">Cyan</option>
-            <option value="gray">Gray</option>
-            <option value="indigo">Indigo</option>
-            <option value="orange">Orange</option>
-            <option value="pink">Pink</option>
-            <option value="purple">Purple</option>
-            <option value="red">Red</option>
-            <option value="teal">Teal</option>
-            <option value="yellow">Yellow</option>
-          </Select>
-        }
         rowSpan={1}
-        value="2.4k"
       />
 
       <Metric
@@ -60,7 +47,6 @@ export default function Home() {
 
       <DemoStreamChart
         title="HTTP Response Codes"
-        // note="This is a footnote!"
         colSpan={{ base: 1, lg: 2 }}
         rowSpan={1}
       />
