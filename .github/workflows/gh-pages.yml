@@ -17,6 +17,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install packages
         run: npm ci
+      - name: Set environment variables
+        run: echo "NEXT_PUBLIC_BASE_PATH=$(echo '${{ github.repository }}' | awk -F '/' '{print $1}')" >> $GITHUB_ENV
+        shell: bash
       - name: Build project
         run: npm run build
       - name: Export static files
